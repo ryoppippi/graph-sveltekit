@@ -1,8 +1,5 @@
-import { useGraphQlJit } from "@envelop/graphql-jit";
-import type { RequestEvent } from "@sveltejs/kit";
 import { buildSchema, g, type InferResolvers } from "garph";
-import { createYoga, type YogaInitialContext } from "graphql-yoga";
-import { API_PATH } from "./graph.client";
+import type { YogaInitialContext } from "graphql-yoga";
 
 export const queryType = g.type("Query", {
   greet: g
@@ -23,10 +20,3 @@ export const resolvers: InferResolvers<
 };
 
 export const schema = buildSchema({ g, resolvers });
-
-export const yogaApp = createYoga<RequestEvent>({
-  schema,
-  plugins: [useGraphQlJit()],
-  graphqlEndpoint: API_PATH,
-  fetchAPI: globalThis,
-});
