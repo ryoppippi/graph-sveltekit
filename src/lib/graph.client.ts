@@ -3,14 +3,14 @@ import {
   createScalarsEnumsHash,
   createGeneratedSchema,
 } from "@garph/gqty/dist/utils";
-import { schema, queryType } from "$lib/graph.server";
+import { schema, queryType } from "../routes/api/graphql/schema";
 
 console.log({
   generatedSchema: createGeneratedSchema(schema),
   scalarsEnumsHash: createScalarsEnumsHash(schema),
 });
 
-export const API_PATH = "/api/graphql" as const satisfies string;
+export const API_PATH = "http://localhost:5173/api/graphql";
 
 export type ClientTypes = InferClient<{ query: typeof queryType }>;
 
